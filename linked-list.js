@@ -32,21 +32,26 @@ class LinkedList {
     } 
   }
 
+  getHead = () => head; 
   reverse() {
     if(!this.head) return;
     let curr = this.head;
     let prev = null;
-    let next = this.head.next;
-    while(next) {
+    while(curr) {
+      const temp = curr.next;
       curr.next = prev;
       prev = curr;
-      curr = next;
-      next = next.next;
+      curr = temp;
       // console.log(prev.next ? prev.next.data : null);
     }
-    curr.next = prev;
-    this.head = curr;
-    return this;
+    return curr;
+  }
+  reverse_recursive(head,prev) {
+    if(!head) return head;
+    let temp = head.next;
+    head.next = prev;
+    this.head = prev = head;
+    return this.reverse_recursive(temp,prev);
   }
 }
 
@@ -55,5 +60,8 @@ ll.append(1);
 ll.append(2);
 ll.append(3);
 ll.bulkAppend([4,5,6]);
-// ll.reverse().print();
-console.log(ll.length);
+ll.reverse();
+ll.print();
+// ll.reverse_recursive(ll.getHead(),null);
+// ll.print();
+// console.log(ll.length);
