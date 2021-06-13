@@ -92,15 +92,15 @@ class LinkedList {
 
 const ll = new LinkedList();
 ll.append(1);
-ll.append(2);
-ll.append(3);
-ll.bulkAppend([4,5,6,7,8,9,10,11]);
+// ll.append(2);
+// ll.append(3);
+// ll.bulkAppend([4,5,6,7,8,9,10,11]);
 // ll.reverse();
 // ll.print();
 // ll.setHead(ll.reverse_recursive(ll.getHead(),null));
 console.log('Original Singly Linked List');
 ll.print();
-ll.reverseM2N(3,8);
+ll.reverseM2N(1,1);
 console.log();
 console.log('Now Reverse the elements from 3rd to 8rth position in Original List so Now the list is -');
 ll.print();
