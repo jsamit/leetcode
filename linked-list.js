@@ -19,11 +19,35 @@ class LinkedList {
     this.tail.next = temp;
     this.tail = temp;
     this.length++;
+    return temp;
   }
   bulkAppend(data = []) {
     data.forEach(datam => this.append(datam));
   }
-
+  detectCycle() {
+    let tortoise = this.head;
+    let hare = this.head;
+    let junction = false;
+    while(tortoise && tortoise.next && hare.next.next) {
+      console.log(tortoise.data,hare.data);
+      tortoise = tortoise.next;
+      hare = hare.next.next;
+      if(hare === tortoise) {
+        junction = true;
+        break; 
+      }
+    }
+    if(junction) {
+      hare = this.head;
+      while(hare !== tortoise) {
+        // console.log(tortoise.data,hare.data);
+        hare = hare.next;
+        tortoise = tortoise.next;
+      }
+      return hare;
+    }
+    return false;
+  }
   print() {
     let curr = this.head;
     let msg = '[ '
@@ -38,6 +62,7 @@ class LinkedList {
   }
 
   getHead = () => this.head; 
+  getTail = () => this.tail;
   reverse() {
     if(!this.head) return;
     let curr = this.head;
@@ -93,15 +118,17 @@ class LinkedList {
 const ll = new LinkedList();
 ll.append(1);
 // ll.append(2);
-// ll.append(3);
-// ll.bulkAppend([4,5,6,7,8,9,10,11]);
+// let junction = ll.append(3);
+// ll.bulkAppend([4,5,6,7,8,9,10]);
+// ll.getTail().next = junction;
 // ll.reverse();
 // ll.print();
 // ll.setHead(ll.reverse_recursive(ll.getHead(),null));
-console.log('Original Singly Linked List');
-ll.print();
-ll.reverseM2N(1,1);
-console.log();
-console.log('Now Reverse the elements from 3rd to 8rth position in Original List so Now the list is -');
-ll.print();
+// console.log('Original Singly Linked List');
+// ll.print();
+// ll.reverseM2N(1,1);
+// console.log();
+// console.log('Now Reverse the elements from 3rd to 8rth position in Original List so Now the list is -');
+// ll.print();
+console.log(ll.detectCycle());
 // console.log(ll.length);
