@@ -1,3 +1,6 @@
+// 142. Linked List Cycle II
+// https://leetcode.com/problems/linked-list-cycle-ii/
+// https://leetcode.com/problems/linked-list-cycle/
 class Node {
   next;
   data;
