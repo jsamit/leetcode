@@ -1,6 +1,6 @@
 const quickSort = function(list,start,end) {
   if(start >= end) {
-    return null;
+    return ;
   }
   const partitionIndex = partition(list,start,end);
   quickSort(list,start,partitionIndex-1);
