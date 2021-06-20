@@ -55,9 +55,6 @@ class BT {
     }
     return arr;
   }
-  /**
-   * @problemLink - https://leetcode.com/problems/binary-tree-level-order-traversal/
-   */
   levelOrderV2(node,arr) {
     if(!node) return arr;
     const queue = [];
@@ -76,13 +73,37 @@ class BT {
     }
     return arr;
   }
+  treeFromRight(node,arr) {
+    if(!node) return arr;
+    const queue = [];
+    queue.push(node);
+    let count = queue.length;
+    while(queue.length) {
+      while(count--) {
+        const target = queue.shift();
+        if(count === 0) arr.push(target.data);
+        if(target.left) queue.push(target.left);
+        if(target.right) queue.push(target.right); 
+      }
+      count = queue.length;
+    }
+    return arr;
+  }
+  treeFromRightV2(node,arr,count) {
+    if(!node) return arr;
+    if(count>arr.length) arr.push(node.data);
+    if(node.right) this.treeFromRightV2(node.right,arr,count+1);
+    if(node.left) this.treeFromRightV2(node.left,arr,count+1);
+    return arr;
+  }
 }
 
 const bt = new BT();
 bt.insert(5);
 bt.insert(10,5);
 bt.insert(15,5,false);
-// // bt.insert(25,10);
+bt.insert(25,10);
+bt.insert(35,15);
 // bt.insert(35,25,false);
 // bt.insert(40,25);
 // bt.insert(45,35,false);
@@ -92,4 +113,5 @@ bt.insert(15,5,false);
 // bt.insert(60,6);
 // // bt.inorder(bt.getRoot());
 // console.log(bt.height(bt.getRoot()));
-console.log(bt.levelOrderV2(bt.getRoot(),[]));
+
+console.log(bt.treeFromRightV2(bt.getRoot(),[],1));
