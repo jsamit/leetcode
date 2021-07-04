@@ -93,7 +93,7 @@ class BT {
     if(!node) return arr;
     if(count>arr.length) arr.push(node.data);
     if(node.right) this.treeFromRightV2(node.right,arr,count+1);
-    if(node.left) this.treeFromRightV2(node.left,arr,count+1);
+    if(node.left) this.treeFromRightV2(node.left,athestrr,count+1);
     return arr;
   }
 }
